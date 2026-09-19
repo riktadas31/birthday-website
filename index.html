@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#190817">
+  <title>For My Love ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- SECURE LOGIN -->
+  <section id="loginScreen" class="screen login-screen">
+    <div class="stars"></div>
+    <div class="login-card">
+      <div class="envelope">💌</div>
+      <p class="eyebrow">A little world made only for you</p>
+      <h1>Open My Heart</h1>
+      <p class="login-copy">
+        There is a little surprise waiting behind this door.<br>
+        Enter the details I gave you, sunu. ❤️
+      </p>
+
+      <form id="loginForm" autocomplete="on">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Your email" required autocomplete="email">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Our secret password" required autocomplete="current-password">
+
+        <button class="primary-btn" type="submit">
+          Enter My Surprise <span>❤️</span>
+        </button>
+      </form>
+
+      <button id="forgotPasswordBtn" class="text-btn" type="button">Forgot Password?</button>
+
+      <p id="loginMessage" class="form-message"></p>
+      <p class="tiny-note">This page uses secure Supabase authentication.</p>
+
+      <form id="resetForm" class="hidden reset-form" autocomplete="on">
+        <div class="reset-divider"></div>
+        <p class="eyebrow">Create a new password</p>
+        <h2>Welcome Back ❤️</h2>
+        <p class="login-copy">Enter a new password for your birthday surprise.</p>
+
+        <label for="newPassword">New Password</label>
+        <input id="newPassword" type="password" placeholder="New password" required minlength="6" autocomplete="new-password">
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" placeholder="Confirm password" required minlength="6" autocomplete="new-password">
+
+        <button class="primary-btn" type="submit">Save New Password ❤️</button>
+        <p id="resetMessage" class="form-message"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- BIRTHDAY SITE -->
+  <main id="birthdayApp" class="hidden">
+
+    <section class="hero" id="home">
+      <div class="floating-orbs"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">For the man who makes my world brighter</p>
+        <h1>Happy Birthday</h1>
+        <h2 id="heroName">My Pasandida Mard </h2>
+        <p class="date">♡ 1st October 2026 ♡</p>
+        <p class="hero-note">A little piece of my heart, made just for you.</p>
+        <button id="startBtn" class="primary-btn">Begin Our Story ✨</button>
+      </div>
+      <div class="scroll-hint">Scroll slowly… there is more ❤️</div>
+    </section>
+
+    <section class="cake-section section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Make a wish</p>
+        <h2>One Candle. One Wish. One Beautiful Year. 🎂</h2>
+        <p>Tap the flame when you're ready.</p>
+      </div>
+
+      <div class="cake-wrap reveal">
+        <div id="flame" class="flame" aria-hidden="true">🔥</div>
+        <button id="candle" class="candle" type="button" aria-label="Double click on the birthday candle"></button>
+        <div class="cake cake-top"></div>
+        <div class="cake cake-middle"></div>
+        <div class="cake cake-bottom"></div>
+        <div class="cake-plate"></div>
+      </div>
+
+      <p id="candleMessage" class="candle-message">
+  🕯️ Double-click the candle to make a wish ✨
+</p>
+    </section>
+
+    <section class="music-section section">
+      <div class="music-card reveal">
+        <div class="record">
+          <span>♪</span>
+        </div>
+        <div class="music-copy">
+          <p class="eyebrow">Our song</p>
+          <h2 id="songTitle">A song for us</h2>
+          <p id="songStatus">Your private song will appear here after login.</p>
+          <audio id="musicPlayer" controls preload="none"></audio>
+          <button id="playSongBtn" class="secondary-btn" type="button">Play the Song 🎵</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="memories-section section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Little pieces of us</p>
+        <h2>Our Beautiful Moments 📸</h2>
+        <p>Every picture holds a story I never want to forget.</p>
+      </div>
+      <div id="gallery" class="gallery">
+        <div class="loading-card">Loading our memories… ❤️</div>
+      </div>
+    </section>
+
+    <section class="letter-section section">
+      <div class="letter-card reveal">
+        <div class="wax-heart">♥</div>
+        <p class="eyebrow">A letter from my heart</p>
+        <h2>To My Wonderful Husband</h2>
+        <div id="loveLetter" class="letter-text"></div>
+        <p class="signature" id="signature">Forever yours,<br>❤️</p>
+      </div>
+    </section>
+
+    <section class="timeline-section section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Our story</p>
+        <h2>The Moments I Treasure</h2>
+      </div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section class="quotes-section section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Just a few things I want you to know</p>
+        <h2>For You, Always 💕</h2>
+      </div>
+      <div id="quotes" class="quotes-grid"></div>
+    </section>
+
+    <section class="final-section section">
+      <div class="final-card reveal">
+        <div class="big-heart">❤️</div>
+        <p class="eyebrow">And one last thing…</p>
+        <h2 id="finalTitle">Happy Birthday, My Love!</h2>
+        <p id="finalMessage"></p>
+        <p class="forever">Today. Tomorrow. Always. ♾️</p>
+        <button id="surpriseBtn" class="primary-btn" type="button">One More Surprise 🎁</button>
+      </div>
+    </section>
+
+    <footer>
+      Made with love • <span id="footerNames">❤️</span> • 01.10.2026
+    </footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

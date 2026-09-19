@@ -1,0 +1,979 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#160713;--bg2:#260b21;--card:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.16);--text:#fff7fb;--muted:#e9cbd8;
+  --pink:#ff83ae;--pink2:#ffb8d0;--purple:#b982ff;
+}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;background:radial-gradient(circle at 20% 10%,#7b1d5260,transparent 30%),radial-gradient(circle at 90% 30%,#6e35a750,transparent 28%),var(--bg);
+  color:var(--text);font-family:Poppins,system-ui,sans-serif;overflow-x:hidden
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.screen{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-screen{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 40%,#9b2c6b45,transparent 35%),linear-gradient(135deg,#13050f,#2b0927,#10040e)}
+.login-card{
+  width:min(480px,100%);position:relative;z-index:2;text-align:center;padding:42px 32px;
+  border:1px solid var(--line);border-radius:32px;background:rgba(255,255,255,.07);
+  backdrop-filter:blur(18px);box-shadow:0 30px 100px #0008
+}
+.envelope{font-size:72px;animation:float 2.4s ease-in-out infinite}
+.eyebrow{font:600 23px Caveat,cursive;color:#ffc4d8;letter-spacing:.3px}
+.login-card h1,.hero h1,.final-card h2,.section-heading h2,.letter-card h2{
+  font-family:"Great Vibes",cursive;font-weight:400
+}
+.login-card h1{font-size:64px;color:#ffd2e1;margin:4px 0 8px}
+.login-copy{color:var(--muted);line-height:1.8;margin:0 auto 26px}
+form{text-align:left}
+label{display:block;margin:14px 0 7px;color:#ffe5ee;font-size:14px}
+input{
+  width:100%;border:1px solid var(--line);background:#140711;color:#fff;padding:14px 15px;border-radius:14px;outline:none
+}
+input:focus{border-color:var(--pink);box-shadow:0 0 0 3px #ff83ae25}
+.primary-btn,.secondary-btn{
+  border:0;border-radius:999px;padding:14px 22px;transition:.25s;color:white;font-weight:700
+}
+.primary-btn{background:linear-gradient(90deg,var(--pink),#b875ff);box-shadow:0 14px 35px #ff83ae35}
+.primary-btn:hover,.secondary-btn:hover{transform:translateY(-2px)}
+form .primary-btn{width:100%;margin-top:22px}
+.secondary-btn{background:#ffffff12;border:1px solid var(--line);margin-top:14px}
+.form-message{min-height:24px;margin-top:13px;font-size:13px}
+.form-message.error{color:#ffb6ca}
+.form-message.success{color:#b9ffd7}
+.text-btn{display:block;margin:14px auto 0;background:none;border:0;color:#ffd2e1;text-decoration:underline;cursor:pointer;font:inherit;font-size:13px}
+.text-btn:hover{color:#fff}
+.reset-form{margin-top:8px}
+.reset-form h2{font-family:"Great Vibes",cursive;font-size:42px;color:#ffd2e1;margin:2px 0 8px}
+.reset-divider{height:1px;background:#ffffff22;margin:22px 0}
+.tiny-note{color:#9d7b8b;font-size:11px;margin-top:12px}
+.hero{min-height:100vh;position:relative;display:grid;place-items:center;text-align:center;padding:70px 22px;background:radial-gradient(circle at 50% 45%,#d93b8240,transparent 33%),linear-gradient(135deg,#180713,#3a0c31,#170610);overflow:hidden}
+.hero-content{max-width:900px;position:relative;z-index:2}
+.hero h1{font-size:clamp(72px,13vw,150px);line-height:.95;background:linear-gradient(90deg,#fff,#ffb6d2,#d2b0ff,#fff);-webkit-background-clip:text;color:transparent}
+.hero h2{font:600 clamp(48px,8vw,90px) Caveat,cursive;color:#ff9fc4}
+.date{letter-spacing:10px;color:#ffdce8;margin-top:16px}
+.hero-note{color:#e5c7d4;margin:20px 0}
+.scroll-hint{position:absolute;bottom:22px;color:#bd99aa;font-size:12px;letter-spacing:1px}
+.floating-orbs:before,.floating-orbs:after{content:"";position:absolute;border-radius:50%;filter:blur(3px);opacity:.35}
+.floating-orbs:before{width:180px;height:180px;background:#ff4d9650;left:8%;top:15%;animation:float 6s infinite}
+.floating-orbs:after{width:240px;height:240px;background:#a96cff45;right:5%;bottom:10%;animation:float 8s infinite reverse}
+.section{padding:100px 6%}
+.cake-section{min-height:85vh;text-align:center;background:radial-gradient(circle at 50% 40%,#8b255f45,transparent 40%),#20091c}
+.section-heading{max-width:800px;margin:0 auto 45px;text-align:center}
+.section-heading h2{font-size:clamp(48px,7vw,78px);color:#ffb8d0;line-height:1.05;margin:6px 0 12px}
+.section-heading p:last-child{color:var(--muted)}
+.cake-wrap{width:280px;height:280px;position:relative;margin:0 auto 20px}
+.cake{position:absolute;left:50%;transform:translateX(-50%);border-radius:15px;box-shadow:0 14px 30px #0006}
+.cake-bottom{width:270px;height:90px;bottom:25px;background:linear-gradient(90deg,#ff6e9d,#ffd0df,#ff6e9d)}
+.cake-middle{width:225px;height:65px;bottom:105px;background:linear-gradient(90deg,#ffc2d6,#fff3f7,#ffc2d6)}
+.cake-top{width:180px;height:50px;bottom:165px;background:linear-gradient(90deg,#ff93b5,#ffd1df,#ff93b5)}
+.cake-plate{position:absolute;width:300px;height:22px;bottom:13px;left:50%;transform:translateX(-50%);border-radius:50%;background:#ffffff22;border:1px solid #ffffff2b}
+.candle{position:absolute;z-index:5;left:50%;bottom:205px;transform:translateX(-50%);width:20px;height:68px;border:0;border-radius:6px;background:repeating-linear-gradient(135deg,#fff 0 7px,#ff9ec2 7px 13px);box-shadow:0 5px 10px #0004}
+.flame{position:absolute;z-index:6;left:50%;bottom:268px;transform:translateX(-50%);font-size:40px;filter:drop-shadow(0 0 14px #ff9b2e);animation:flicker .7s infinite alternate}
+.flame.blown{opacity:0;transform:translateX(-50%) scale(.2);transition:.4s}
+.candle-message{font:600 28px Caveat,cursive;color:#ffc0d5}
+.music-section{background:linear-gradient(135deg,#160713,#2c0b2a)}
+.music-card{max-width:900px;margin:auto;padding:38px;display:flex;align-items:center;gap:30px;border:1px solid var(--line);border-radius:32px;background:var(--card);backdrop-filter:blur(15px)}
+.record{width:150px;height:150px;flex:0 0 150px;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle,#08060a 0 4px,#19141d 5px 8px);box-shadow:0 15px 35px #0007;animation:spin 6s linear infinite}
+.record span{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#ff82ad;color:white;font-size:24px}
+.music-copy{min-width:0}
+.music-copy h2{font:400 52px "Great Vibes",cursive;color:#ffb9d1;margin:3px 0}
+.music-copy p:not(.eyebrow){color:var(--muted);margin-bottom:12px}
+audio{width:100%;max-width:520px}
+.memories-section{background:#180713}
+.gallery{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.loading-card{grid-column:1/-1;text-align:center;padding:45px;border:1px dashed var(--line);border-radius:24px;color:#e7c8d5;background:#ffffff06}
+.error-card{color:#ffc0ce}
+.photo-card{margin:0;background:#fff;color:#351528;padding:10px 10px 18px;transform:rotate(-1.2deg);box-shadow:0 18px 40px #0008;transition:.3s}
+.photo-card:nth-child(even){transform:rotate(1.1deg)}
+.photo-card:hover{transform:translateY(-8px) rotate(0deg)}
+.photo-frame{aspect-ratio:4/5;overflow:hidden;background:#eee}
+.photo-frame img{width:100%;height:100%;display:block;object-fit:cover}
+.photo-card figcaption{text-align:center;font:600 22px Caveat,cursive;padding:12px 5px 0}
+.letter-section{background:radial-gradient(circle at center,#7f205a45,transparent 48%),#1d081b;display:flex;justify-content:center}
+.letter-card{width:min(850px,100%);position:relative;padding:55px 50px;text-align:center;background:#fffafc;color:#4a1830;border-radius:8px;box-shadow:0 30px 80px #0008}
+.wax-heart{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:-80px auto 20px;background:#b51f54;color:white;font-size:25px;box-shadow:0 8px 18px #0004}
+.letter-card .eyebrow{color:#b51f54}
+.letter-card h2{font-size:64px;color:#8e2750;margin:3px 0 25px}
+.letter-text{font:400 22px/1.8 "Playfair Display",serif}
+.letter-text p{margin:0 0 18px}
+.signature{font:600 27px Caveat,cursive;color:#a12b59;margin-top:28px}
+.timeline-section{background:#21091e}
+.timeline{max-width:850px;margin:auto;position:relative}
+.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#ff83ae55}
+.timeline-item{position:relative;display:flex;align-items:center;min-height:160px}
+.timeline-item:nth-child(odd){justify-content:flex-start;padding-right:52%}
+.timeline-item:nth-child(even){justify-content:flex-end;padding-left:52%}
+.timeline-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#39122f;border:2px solid #ff83ae;font-size:22px;z-index:2}
+.timeline-card{padding:22px;border:1px solid var(--line);background:#ffffff08;border-radius:20px;width:100%}
+.timeline-number{color:#c48aa3;font-size:11px;letter-spacing:2px}
+.timeline-card h3{font:600 30px Caveat,cursive;color:#ffb5ce;margin:3px 0}
+.timeline-card p{color:#dfc1cf;line-height:1.65}
+.quotes-section{background:radial-gradient(circle at center,#7c245a40,transparent 50%),#160713}
+.quotes-grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.quote-card{padding:30px;border:1px solid var(--line);border-radius:24px;background:#ffffff08;text-align:center;transition:.3s}
+.quote-card:hover{transform:translateY(-6px);background:#ffffff0d}
+.quote-card span{font:700 60px Georgia;color:#ff83ae;display:block;height:35px}
+.quote-card p{font:28px/1.4 Caveat,cursive;color:#ffd0df}
+.final-section{min-height:90vh;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at center,#ff4e9138,transparent 40%),linear-gradient(135deg,#2a0926,#12040f)}
+.final-card{max-width:850px}
+.big-heart{font-size:90px;animation:heartbeat 1.4s infinite}
+.final-card h2{font-size:clamp(58px,9vw,100px);color:#ffb6cf}
+.final-card>p:not(.eyebrow):not(.forever){max-width:700px;margin:18px auto;color:#ecd0dd;line-height:1.8}
+.forever{font:600 30px Caveat,cursive!important;color:#ffb7cf!important}
+footer{padding:28px;text-align:center;background:#0e030c;color:#a27d8f;font-size:12px}
+.toast{position:fixed;z-index:5000;right:18px;bottom:18px;max-width:330px;padding:13px 16px;border-radius:14px;background:#2b0b24;color:white;border:1px solid var(--line);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.floating-heart{position:fixed;z-index:4000;bottom:-30px;pointer-events:none;animation:floatHeart linear forwards}
+.confetti{position:fixed;z-index:4500;pointer-events:none;animation:fall linear forwards}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flicker{from{transform:translateX(-50%) scale(1) rotate(-2deg)}to{transform:translateX(-50%) scale(1.12) rotate(2deg)}}
+@keyframes floatHeart{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes fall{from{transform:translateY(0) rotate(0);opacity:1}to{transform:translateY(90vh) rotate(720deg);opacity:0}}
+@media(max-width:700px){
+  .login-card{padding:34px 22px}.login-card h1{font-size:52px}
+  .section{padding:75px 18px}
+  .music-card{flex-direction:column;text-align:center;padding:28px 20px}.record{width:125px;height:125px;flex-basis:125px}
+  .music-copy h2{font-size:45px}
+  .letter-card{padding:45px 23px}.letter-card h2{font-size:48px}.letter-text{font-size:18px}
+  .timeline:before{left:24px}.timeline-item:nth-child(odd),.timeline-item:nth-child(even){justify-content:flex-start;padding:25px 0 25px 65px;min-height:170px}
+  .timeline-dot{left:24px}
+  .timeline-card h3{font-size:27px}
+  .hero h1{font-size:70px}.hero h2{font-size:55px}.date{letter-spacing:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}
+}
+/* =========================================================
+   📸 TIMELINE PHOTO FIX
+   ========================================================= */
+
+.timeline-card{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow:hidden;
+}
+
+/* =========================================================
+   📸 TIMELINE PHOTO - LARGER, FULL IMAGE
+   ========================================================= */
+
+.timeline-photo{
+  width:320px !important;
+  height:220px !important;
+  margin:0 auto 18px !important;
+  border-radius:16px;
+  overflow:hidden;
+  background:#1c0b18;
+  border:2px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 25px rgba(0,0,0,.30);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.timeline-photo img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  background:#1c0b18;
+}
+
+/* Mobile */
+
+@media(max-width:700px){
+
+  .timeline-photo{
+    width:260px !important;
+    height:190px !important;
+  }
+
+}
+/* =========================================================
+   💕 MEMORY FLIP CARDS
+   ========================================================= */
+
+.memory-flip-card {
+  width: 100%;
+  min-height: 390px;
+  perspective: 1200px;
+  cursor: pointer;
+  outline: none;
+}
+
+.memory-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 390px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.memory-flip-card.flipped .memory-flip-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* FRONT + BACK */
+
+.memory-flip-front,
+.memory-flip-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   💕 FRONT OF CARD
+   ========================================================= */
+
+.memory-flip-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 35%),
+    linear-gradient(135deg, #fff0f6, #ffe1ed 50%, #fff5f8);
+
+  border: 2px solid rgba(255, 105, 150, 0.25);
+
+  box-shadow:
+    0 18px 40px rgba(180, 70, 110, 0.18),
+    inset 0 0 30px rgba(255,255,255,.7);
+
+  transform: rotateY(0deg);
+}
+
+
+.memory-front-heart {
+  font-size: 58px;
+  margin-bottom: 12px;
+
+  animation: memoryHeartBeat 1.8s ease-in-out infinite;
+}
+
+
+@keyframes memoryHeartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+
+.memory-front-number {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+
+  color: #d94f83;
+
+  margin-bottom: 12px;
+}
+
+
+.memory-flip-front h3 {
+  margin: 5px 0 10px;
+
+  font-size: 24px;
+
+  color: #8f3159;
+}
+
+
+.memory-flip-front p {
+  margin: 0;
+
+  font-size: 15px;
+
+  color: #9b6478;
+
+  line-height: 1.6;
+}
+
+
+.memory-click {
+  margin-top: 25px;
+
+  padding: 11px 20px;
+
+  border-radius: 30px;
+
+  background: rgba(255,255,255,.75);
+
+  color: #d94f83;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow: 0 8px 20px rgba(180,70,110,.12);
+
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+
+.memory-flip-card:hover .memory-click {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 25px rgba(180,70,110,.18);
+}
+
+
+/* =========================================================
+   📸 BACK OF CARD
+   ========================================================= */
+
+.memory-flip-back {
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 2px solid rgba(255, 105, 150, 0.22);
+
+  box-shadow:
+    0 18px 40px rgba(180, 70, 110, 0.18);
+
+  transform: rotateY(180deg);
+}
+
+
+.memory-photo-wrap {
+  flex: 1;
+
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 14px 5px;
+
+  background: #fff7fa;
+}
+
+
+.memory-photo-wrap img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  border-radius: 16px;
+}
+
+
+.memory-back-caption {
+  padding: 8px 16px 4px;
+
+  text-align: center;
+
+  color: #8f3159;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+
+.memory-flip-hint {
+  padding: 6px 16px 12px;
+
+  text-align: center;
+
+  color: #c77a96;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   ✨ HOVER EFFECT
+   ========================================================= */
+
+.memory-flip-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.memory-flip-card {
+  transition: transform .3s ease;
+}
+
+
+/* =========================================================
+   📱 MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .memory-flip-card {
+    min-height: 360px;
+  }
+
+  .memory-flip-inner {
+    height: 360px;
+  }
+
+  .memory-flip-front {
+    padding: 24px;
+  }
+
+  .memory-front-heart {
+    font-size: 48px;
+  }
+
+  .memory-flip-front h3 {
+    font-size: 21px;
+  }
+
+}
+/* =========================================================
+   ✨ CANDLE SPARKLE BURST
+   ========================================================= */
+
+.candle-sparkle {
+  position: fixed;
+
+  z-index: 9999;
+
+  pointer-events: none;
+
+  transform: translate(-50%, -50%) scale(0);
+
+  animation: candleSparkleBurst 1.4s ease-out forwards;
+}
+
+
+@keyframes candleSparkleBurst {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(0);
+  }
+
+  15% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(1.25);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-50% + var(--spark-x)),
+        calc(-50% + var(--spark-y))
+      )
+      scale(0.25);
+  }
+
+}
+/* =========================================================
+   🎉 BIRTHDAY OPENING CELEBRATION
+   ========================================================= */
+
+/* ---------- Corner Celebration ---------- */
+
+.birthday-burst {
+    position: fixed;
+    top: 12%;
+    width: 140px;
+    height: 140px;
+    z-index: 999999;
+    pointer-events: none;
+    animation: birthdayBurstBoom 2.2s ease-out forwards;
+}
+
+.birthday-burst.left {
+    left: -20px;
+}
+
+.birthday-burst.right {
+    right: -20px;
+}
+
+.birthday-burst span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    font-size: 30px;
+
+    transform: translate(-50%, -50%);
+
+    animation: birthdayParticle 1.8s ease-out forwards;
+}
+
+.birthday-burst span:nth-child(1) {
+    --x: -90px;
+    --y: -70px;
+}
+
+.birthday-burst span:nth-child(2) {
+    --x: 80px;
+    --y: -80px;
+}
+
+.birthday-burst span:nth-child(3) {
+    --x: -100px;
+    --y: 20px;
+}
+
+.birthday-burst span:nth-child(4) {
+    --x: 100px;
+    --y: 30px;
+}
+
+.birthday-burst span:nth-child(5) {
+    --x: -60px;
+    --y: 90px;
+}
+
+.birthday-burst span:nth-child(6) {
+    --x: 70px;
+    --y: 100px;
+}
+
+
+/* =========================================================
+   ❤️ BIRTHDAY MESSAGE
+   ========================================================= */
+
+.birthday-opening-message {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 999998;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding: 25px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    /*
+       IMPORTANT:
+       Solid dark background hides the original
+       website content behind the birthday message.
+    */
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            #72274d 0%,
+            #45152f 35%,
+            #280b20 68%,
+            #160510 100%
+        );
+
+    animation: birthdayOverlay 4.2s ease forwards;
+}
+
+
+/* =========================================================
+   🎉 LITTLE SURPRISE TEXT
+   ========================================================= */
+
+.birthday-opening-small {
+    position: relative;
+
+    margin-bottom: 20px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(18px, 2.4vw, 28px);
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    line-height: 1.3;
+
+    color: #ffeeb0;
+
+    text-shadow:
+        0 2px 4px #000,
+        0 0 10px rgba(255, 210, 70, 0.9),
+        0 0 25px rgba(255, 180, 40, 0.45);
+
+    animation: birthdaySmallIn 0.8s ease-out both;
+}
+
+
+/* =========================================================
+   🎂 HAPPY BIRTHDAY
+   ========================================================= */
+
+.birthday-opening-big {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(45px, 6.5vw, 88px);
+
+    font-weight: 900;
+
+    line-height: 1.08;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    color: #fffdf7;
+
+    /*
+       Thick dark outline makes the text
+       extremely clear.
+    */
+    -webkit-text-stroke: 3px #1b0907;
+
+    text-shadow:
+        0 4px 0 #1b0907,
+        0 7px 12px rgba(0, 0, 0, 0.95),
+        0 0 15px rgba(255, 210, 70, 0.9),
+        0 0 32px rgba(255, 180, 30, 0.65);
+
+    animation:
+        birthdayMainIn 1s cubic-bezier(.2, .8, .2, 1) both,
+        birthdayGoldenGlow 1.5s ease-in-out 1s infinite alternate;
+}
+
+
+/* =========================================================
+   ❤️ HEART
+   ========================================================= */
+
+.birthday-opening-big::after {
+    content: "😘";
+
+    display: inline-block;
+
+    margin-left: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.65em;
+
+    -webkit-text-stroke: 0;
+
+    text-shadow:
+        0 3px 5px #000,
+        0 0 15px #ff1744,
+        0 0 30px #ff1744;
+
+    animation: birthdayHeartPulse 1s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   💕 MY LOVE
+   ========================================================= */
+
+.birthday-opening-sub {
+    position: relative;
+
+    margin-top: 25px;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size: clamp(38px, 5vw, 64px);
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    color: #ffb8d5;
+
+    -webkit-text-stroke: 1.5px #210611;
+
+    text-shadow:
+        0 3px 5px rgba(0, 0, 0, 0.95),
+        0 0 12px #ff4081,
+        0 0 25px #ff4081,
+        0 0 40px rgba(255, 64, 129, 0.45);
+
+    animation: birthdayLoveIn 1s ease-out 0.4s both;
+}
+
+
+/* =========================================================
+   ✨ OVERLAY FADE
+   ========================================================= */
+
+@keyframes birthdayOverlay {
+
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    88% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   🎉 SMALL TEXT ENTRANCE
+   ========================================================= */
+
+@keyframes birthdaySmallIn {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   🎂 MAIN TEXT ENTRANCE
+   ========================================================= */
+
+@keyframes birthdayMainIn {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.65);
+        filter: blur(8px);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   ✨ GOLDEN GLOW
+   ========================================================= */
+
+@keyframes birthdayGoldenGlow {
+
+    from {
+        text-shadow:
+            0 4px 0 #1b0907,
+            0 7px 12px rgba(0, 0, 0, 0.95),
+            0 0 15px rgba(255, 210, 70, 0.7),
+            0 0 30px rgba(255, 180, 30, 0.4);
+    }
+
+    to {
+        text-shadow:
+            0 4px 0 #1b0907,
+            0 7px 16px rgba(0, 0, 0, 0.95),
+            0 0 22px rgba(255, 225, 100, 1),
+            0 0 45px rgba(255, 190, 30, 0.75);
+    }
+}
+
+
+/* =========================================================
+   ❤️ HEART PULSE
+   ========================================================= */
+
+@keyframes birthdayHeartPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+
+/* =========================================================
+   💕 MY LOVE ENTRANCE
+   ========================================================= */
+
+@keyframes birthdayLoveIn {
+
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.8);
+        filter: blur(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   🎊 CORNER BURST
+   ========================================================= */
+
+@keyframes birthdayBurstBoom {
+
+    0% {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   ✨ CORNER PARTICLES
+   ========================================================= */
+
+@keyframes birthdayParticle {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+    }
+
+    15% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.4);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(0.5);
+    }
+}
+
+
+/* =========================================================
+   📱 MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .birthday-opening-message {
+        padding: 20px;
+    }
+
+    .birthday-opening-small {
+        font-size: 17px;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+
+    .birthday-opening-big {
+        font-size: clamp(40px, 12vw, 62px);
+        letter-spacing: 1px;
+        -webkit-text-stroke: 2px #1b0907;
+    }
+
+    .birthday-opening-big::after {
+        margin-left: 8px;
+    }
+
+    .birthday-opening-sub {
+        margin-top: 18px;
+        font-size: 42px;
+    }
+}
