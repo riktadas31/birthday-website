@@ -399,19 +399,35 @@
     osc.stop(start + 0.5);
   });
 }
-  function birthdayOpeningCelebration() {
+ function birthdayOpeningCelebration() {
 
-  // 🎵 Play your uploaded birthday sound
-  const birthdaySound = new Audio("birthday-boom.mp3");
-  birthdaySound.volume = 1.0;
+  // 🎉 Create the birthday message FIRST
+  const message = document.createElement("div");
 
-  // 🎉 Start sound + visual celebration together
-  birthdaySound.currentTime = 0;
-  birthdaySound.play().catch(() => {});
+  message.className = "birthday-opening-message";
 
+  message.innerHTML = `
+    <div class="birthday-opening-small">
+      🎉 A Little Surprise For You 🎉
+    </div>
+
+    <div class="birthday-opening-big">
+      HAPPY BIRTHDAY
+    </div>
+
+    <div class="birthday-opening-sub">
+      My Love ✨
+    </div>
+  `;
+
+  document.body.appendChild(message);
+
+
+  // 🎉 Corner celebrations
   const corners = ["left", "right"];
 
   corners.forEach((side) => {
+
     const burst = document.createElement("div");
 
     burst.className = `birthday-burst ${side}`;
@@ -430,23 +446,26 @@
     setTimeout(() => burst.remove(), 2200);
   });
 
-  // 💖 Happy Birthday message
-  const message = document.createElement("div");
 
-  message.className = "birthday-opening-message";
-
-  message.innerHTML = `
-    <div class="birthday-opening-small">🎉 A little surprise for you 🎉</div>
-    <div class="birthday-opening-big">HAPPY BIRTHDAY ❤️</div>
-    <div class="birthday-opening-sub">Sunu ✨</div>
-  `;
-
-  document.body.appendChild(message);
-
-  setTimeout(() => message.remove(), 3000);
-
-  // 💕 Extra hearts
+  // 💕 Hearts
   createHearts(25);
+
+
+  // 🎵 Start the birthday sound AFTER
+  // the visual message has been placed on screen
+  const birthdaySound = new Audio("birthday-boom.mp3");
+
+  birthdaySound.volume = 1.0;
+
+  birthdaySound.currentTime = 0;
+
+  birthdaySound.play().catch(() => {});
+
+
+  // Keep the birthday message visible for 3 seconds
+  setTimeout(() => {
+    message.remove();
+  }, 3000);
 }
   function createHearts(amount = 14) {
     const symbols = ["❤️", "💕", "💗", "💖", "💓", "✨", "🌸"];
@@ -763,10 +782,11 @@
     loginScreen.classList.add("hidden");
     birthdayApp.classList.remove("hidden");
 
-    await loadPrivateContent();
-
-    // 🎉 Birthday opening celebration first
+   // 🎉 SHOW BIRTHDAY CELEBRATION IMMEDIATELY
 birthdayOpeningCelebration();
+
+// Load photos/music in the background
+loadPrivateContent();
 
 // Wait for the birthday celebration before starting the song
 setTimeout(async () => {
