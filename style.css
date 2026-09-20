@@ -977,3 +977,595 @@ footer{padding:28px;text-align:center;background:#0e030c;color:#a27d8f;font-size
         font-size: 42px;
     }
 }
+/* =========================================================
+   🎈 LOVE BALLOON QUOTE SECTION
+   ========================================================= */
+
+.balloon-area {
+  width: min(1450px, 94%);
+  margin: 50px auto 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 55px 35px;
+
+  align-items: start;
+  justify-items: center;
+}
+
+
+/* =========================================================
+   🎈 BALLOON CARD
+   ========================================================= */
+
+.balloon-card {
+  width: 100%;
+  min-height: 390px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  position: relative;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+
+/* =========================================================
+   🎈 BALLOON
+   ========================================================= */
+
+.love-balloon {
+
+  position: relative;
+
+  width: 190px;
+  height: 225px;
+
+  border: none;
+  border-radius: 50% 50% 47% 47%;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  color: white;
+
+  z-index: 3;
+
+  transform-origin: bottom center;
+
+  box-shadow:
+    inset -22px -25px 35px rgba(0, 0, 0, 0.20),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.28),
+    0 15px 35px rgba(255, 50, 150, 0.20);
+
+  animation: balloonFloat 3.5s ease-in-out infinite;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+
+/* 🎈 Balloon bottom point */
+
+.love-balloon::after {
+
+  content: "";
+
+  position: absolute;
+
+  bottom: -7px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 16px;
+  height: 16px;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+
+  background: inherit;
+}
+
+
+/* =========================================================
+   🎨 BALLOON COLORS
+   ========================================================= */
+
+.love-balloon.pink {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #ffb5dc 0%,
+      #ff4fa3 22%,
+      #ed176e 55%,
+      #a5004d 100%
+    );
+
+  box-shadow:
+    inset -22px -25px 35px rgba(120, 0, 50, 0.30),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.35),
+    0 15px 40px rgba(255, 40, 140, 0.45);
+}
+
+
+.love-balloon.blue {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #b7e7ff 0%,
+      #329dff 25%,
+      #1263df 60%,
+      #083a91 100%
+    );
+
+  box-shadow:
+    inset -22px -25px 35px rgba(0, 35, 120, 0.30),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.35),
+    0 15px 40px rgba(30, 130, 255, 0.45);
+}
+
+
+.love-balloon.gold {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #fff5a8 0%,
+      #ffd329 28%,
+      #f5a900 62%,
+      #b45a00 100%
+    );
+
+  box-shadow:
+    inset -22px -25px 35px rgba(130, 70, 0, 0.30),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.35),
+    0 15px 40px rgba(255, 190, 30, 0.45);
+}
+
+
+.love-balloon.purple {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #edc7ff 0%,
+      #b34dff 25%,
+      #7b16d7 60%,
+      #42007c 100%
+    );
+
+  box-shadow:
+    inset -22px -25px 35px rgba(70, 0, 130, 0.30),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.35),
+    0 15px 40px rgba(170, 50, 255, 0.45);
+}
+
+
+.love-balloon.green {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #c9ffd8 0%,
+      #40e875 25%,
+      #16b94e 60%,
+      #08732d 100%
+    );
+
+  box-shadow:
+    inset -22px -25px 35px rgba(0, 100, 40, 0.30),
+    inset 18px 15px 30px rgba(255, 255, 255, 0.35),
+    0 15px 40px rgba(40, 230, 110, 0.40);
+}
+
+
+.love-balloon.red {
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #ffb3bd 0%,
+      #ff4261 25%,
+      #e5133b 60%,
+      #8e0020 100%
+    );
+}
+
+
+/* =========================================================
+   ✨ BALLOON SHINE
+   ========================================================= */
+
+.balloon-shine {
+
+  position: absolute;
+
+  top: 28px;
+  left: 38px;
+
+  width: 34px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.75),
+      rgba(255,255,255,0)
+    );
+
+  transform: rotate(25deg);
+
+  filter: blur(2px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   💗 BALLOON HEART
+   ========================================================= */
+
+.balloon-heart {
+
+  font-size: 55px;
+
+  line-height: 1;
+
+  color: white;
+
+  text-shadow:
+    0 3px 10px rgba(0,0,0,0.18);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   💕 CLICK ME
+   ========================================================= */
+
+.balloon-text {
+
+  font-family: "Caveat", cursive;
+
+  font-size: 27px;
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  text-shadow:
+    0 3px 8px rgba(0,0,0,0.20);
+
+  pointer-events: none;
+}
+
+
+.balloon-small-heart {
+
+  font-size: 18px;
+
+  color: white;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   🎀 BALLOON STRING
+   ========================================================= */
+
+.balloon-string {
+
+  width: 3px;
+
+  height: 75px;
+
+  margin-top: -3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.15),
+      rgba(255,255,255,0.75),
+      rgba(255,255,255,0.15)
+    );
+
+  position: relative;
+
+  z-index: 1;
+}
+
+
+.balloon-string::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 35px;
+  left: 50%;
+
+  width: 30px;
+  height: 55px;
+
+  border-left: 3px solid rgba(255,255,255,0.55);
+
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+/* =========================================================
+   💌 HIDDEN MESSAGE
+   ========================================================= */
+
+.balloon-message {
+
+  position: absolute;
+
+  top: 75px;
+  left: 50%;
+
+  width: min(330px, 90%);
+
+  min-height: 220px;
+
+  padding: 38px 30px;
+
+  box-sizing: border-box;
+
+  transform:
+    translate(-50%, 35px)
+    scale(0.5);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 75, 170, 0.20),
+      rgba(35, 8, 29, 0.97)
+    );
+
+  border: 1px solid rgba(255, 140, 205, 0.35);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.55),
+    0 0 35px rgba(255, 50, 150, 0.25);
+
+  z-index: 5;
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(.17,.67,.35,1.3);
+}
+
+
+/* =========================================================
+   💬 MESSAGE TEXT
+   ========================================================= */
+
+.balloon-message p {
+
+  margin: 12px 0 8px;
+
+  font-family: "Caveat", cursive;
+
+  font-size: 27px;
+
+  line-height: 1.35;
+
+  color: #ffd4e8;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 12px rgba(255, 110, 180, 0.25);
+}
+
+
+.message-quote {
+
+  display: block;
+
+  font-family: Georgia, serif;
+
+  font-size: 55px;
+
+  line-height: 0.7;
+
+  color: #ff73ae;
+}
+
+
+.message-heart {
+
+  display: block;
+
+  margin-top: 12px;
+
+  font-size: 25px;
+
+  animation: messageHeartBeat 1.2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   💥 POPPED STATE
+   ========================================================= */
+
+.balloon-card.popped .love-balloon {
+
+  animation:
+    balloonPop 0.55s ease forwards;
+
+  pointer-events: none;
+}
+
+
+.balloon-card.popped .balloon-string {
+
+  opacity: 0;
+
+  transform: scaleY(0);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s ease;
+}
+
+
+.balloon-card.popped .balloon-message {
+
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+}
+
+
+/* =========================================================
+   🎈 FLOATING ANIMATION
+   ========================================================= */
+
+@keyframes balloonFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(-1deg);
+  }
+
+  50% {
+    transform:
+      translateY(-14px)
+      rotate(1deg);
+  }
+}
+
+
+/* =========================================================
+   💥 POP ANIMATION
+   ========================================================= */
+
+@keyframes balloonPop {
+
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  35% {
+    transform: scale(1.18);
+  }
+
+  55% {
+    transform: scale(0.85);
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   💖 HEART BEAT
+   ========================================================= */
+
+@keyframes messageHeartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+
+/* =========================================================
+   📱 MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .balloon-area {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 35px 15px;
+  }
+
+  .love-balloon {
+    width: 155px;
+    height: 185px;
+  }
+
+  .balloon-heart {
+    font-size: 45px;
+  }
+
+  .balloon-text {
+    font-size: 24px;
+  }
+
+  .balloon-message {
+    width: 280px;
+  }
+
+  .balloon-message p {
+    font-size: 24px;
+  }
+}
+
+
+@media (max-width: 560px) {
+
+  .balloon-area {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .balloon-card {
+    min-height: 350px;
+  }
+
+  .love-balloon {
+    width: 175px;
+    height: 205px;
+  }
+
+  .balloon-message {
+    top: 65px;
+    width: min(320px, 90vw);
+  }
+}
