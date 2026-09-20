@@ -73,11 +73,69 @@
       .join("");
   }
 
-  function renderQuotes() {
-    $("quotes").innerHTML = C.QUOTES
-      .map((quote) => `<article class="quote-card"><span>“</span><p>${escapeHtml(quote)}</p></article>`)
-      .join("");
-  }
+ function renderQuotes() {
+
+  const balloonColors = [
+    "pink",
+    "blue",
+    "gold",
+    "purple",
+    "green",
+    "red"
+  ];
+
+  $("quotes").innerHTML = C.QUOTES
+    .map((quote, index) => {
+
+      const color =
+        balloonColors[index % balloonColors.length];
+
+      return `
+        <article
+          class="balloon-card reveal"
+          data-quote-index="${index}"
+        >
+
+          <!-- 🎈 BALLOON -->
+          <button
+            class="love-balloon ${color}"
+            type="button"
+            aria-label="Pop balloon ${index + 1}"
+          >
+
+            <span class="balloon-shine"></span>
+
+            <span class="balloon-heart">♡</span>
+
+            <span class="balloon-text">
+              Click Me
+            </span>
+
+            <span class="balloon-small-heart">
+              ♥
+            </span>
+
+          </button>
+
+          <!-- 🎀 BALLOON STRING -->
+          <div class="balloon-string"></div>
+
+          <!-- 💌 MESSAGE -->
+          <div class="balloon-message">
+            <span class="message-quote">“</span>
+
+            <p>
+              ${escapeHtml(quote)}
+            </p>
+
+            <span class="message-heart">❤️</span>
+          </div>
+
+        </article>
+      `;
+    })
+    .join("");
+}
 
  async function renderTimeline() {
   const timeline = $("timeline");
@@ -465,8 +523,93 @@
   // Keep the birthday message visible for 3 seconds
   setTimeout(() => {
     message.remove();
-  }, 3000);
+  }, 5000);
 }
+// 🎈 Balloon POP / BOOM sound
+function playBalloonBoomSound() {
+
+  const AudioContext =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContext) return;
+
+  const audio = new AudioContext();
+
+  if (audio.state === "suspended") {
+    audio.resume();
+  }
+
+  const now = audio.currentTime;
+
+  // 💥 Deep boom
+  const boom = audio.createOscillator();
+  const boomGain = audio.createGain();
+
+  boom.type = "sine";
+
+  boom.frequency.setValueAtTime(180, now);
+  boom.frequency.exponentialRampToValueAtTime(
+    45,
+    now + 0.35
+  );
+
+  boomGain.gain.setValueAtTime(0.001, now);
+
+  boomGain.gain.exponentialRampToValueAtTime(
+    0.65,
+    now + 0.025
+  );
+
+  boomGain.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + 0.45
+  );
+
+  boom.connect(boomGain);
+  boomGain.connect(audio.destination);
+
+  boom.start(now);
+  boom.stop(now + 0.5);
+
+
+  // ✨ Small pop click
+  const pop = audio.createOscillator();
+  const popGain = audio.createGain();
+
+  pop.type = "triangle";
+
+  pop.frequency.setValueAtTime(
+    900,
+    now
+  );
+
+  pop.frequency.exponentialRampToValueAtTime(
+    180,
+    now + 0.12
+  );
+
+  popGain.gain.setValueAtTime(
+    0.001,
+    now
+  );
+
+  popGain.gain.exponentialRampToValueAtTime(
+    0.35,
+    now + 0.01
+  );
+
+  popGain.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + 0.18
+  );
+
+  pop.connect(popGain);
+  popGain.connect(audio.destination);
+
+  pop.start(now);
+  pop.stop(now + 0.2);
+}
+
   function createHearts(amount = 14) {
     const symbols = ["❤️", "💕", "💗", "💖", "💓", "✨", "🌸"];
     for (let i = 0; i < amount; i++) {
@@ -677,6 +820,48 @@
       showToast("I love you. More than this little website can say. ❤️");
     });
 
+   // ✨ BEGIN OUR STORY
+const startBtn = $("startBtn");
+
+if (startBtn) {
+  startBtn.addEventListener("click", () => {
+    $("cake-section")?.scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+}
+  // 🎈 BALLOON POP INTERACTION
+document.querySelectorAll(".balloon-card").forEach((card) => {
+
+  const balloon = card.querySelector(".love-balloon");
+
+  if (!balloon) return;
+
+  balloon.addEventListener("click", () => {
+
+    // Prevent clicking the same balloon again
+    if (card.classList.contains("popped")) return;
+
+    // 💥 Play boom/pop sound
+    playBalloonBoomSound();
+
+    // 🎈 Balloon popping animation
+    card.classList.add("popped");
+
+    // ✨ Celebration
+    confetti();
+    createHearts(12);
+
+    // 💖 Extra little burst
+    setTimeout(() => {
+      createHearts(8);
+    }, 250);
+
+  });
+
+});
+
+
     setInterval(() => createHearts(2), 3500);
   }
 
@@ -797,7 +982,7 @@ setTimeout(async () => {
     songStatus.textContent =
       "Tap “Play Our Song” when you're ready. 🎵";
   }
-}, 2800);
+}, 4800);
   }
 
   loginForm.addEventListener("submit", async (event) => {
