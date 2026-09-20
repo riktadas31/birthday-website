@@ -14,8 +14,8 @@ window.BIRTHDAY_CONFIG = {
 
   BUCKET: "birthday-private",
 
-  HUSBAND_NAME: "Mona(my man)",
-  YOUR_NAME: "Your Wiffy(Rikta)",
+  HUSBAND_NAME: "Sunu",
+  YOUR_NAME: "Your Wiffy",
 
   SONG_TITLE: "Our Special Song",
 
